@@ -1,0 +1,88 @@
+
+<h1 *ngIf="carr.length == 0" class="text-center">Shopping Cart</h1>
+<h1 *ngIf="carr.length !== 0">Shopping Cart</h1>
+
+<div class="shopping-cart" *ngIf="carr.length !== 0"  >
+
+  <div class="column-labels">
+    <label class="product-image">Image</label>
+    <label class="product-details">Product</label>
+    <label class="product-price">Price</label>
+    <label class="product-quantity">Quantity</label>
+    <label class="product-removal">Remove</label>
+    <label class="product-line-price">Total</label>
+  </div>
+
+  <div class="product" *ngFor="let acart of carr">
+    <div class="product-image">
+      <img [src]="acart.image">
+    </div>
+    <div class="product-details">
+      <div class="product-title">{{acart.title}}</div>
+      <p class="product-description">{{acart.description|limitTo:20}}</p>
+    </div>
+    <div class="product-price">{{acart.price}}</div>
+    <div class="product-quantity">
+      <input type="number" value="1" min="1">
+    </div>
+    <div class="product-removal">
+      <button class="remove-product" (click)="removefromcart(acart)">
+        Remove
+      </button>
+    </div>
+    <!-- this for count quantity and price -->
+    <div class="product-line-price">{{acart.price}}</div>
+  </div>
+
+  
+    <!-- grand totoal is here -->
+  <div class="totals">
+    <div class="totals-item">
+      <label>Subtotal</label>
+      <div class="totals-value" id="cart-subtotal">{{subtotalvalue|number:'1.2-2'}}</div>
+    </div>
+    <div class="totals-item">
+      <label>Shipping</label>
+      <div class="totals-value" id="cart-shipping">{{shipingprice}}</div>
+    </div>
+    <div class="totals-item totals-item-total">
+      <label>Grand Total</label>
+      <div class="totals-value" id="cart-total">{{grandtotalvalue|number:'1.2-2'}}</div>
+    </div>
+  </div>
+      
+      <button class="checkout" >Checkout</button>
+
+</div>
+
+<!-- When Cart is Empty follwing code will be display -->
+<!-- <div *ngIf="carr.length == 0" class="Empty_Main">
+  <div class="E_C_upper">
+    <h4>CartItems</h4>
+  </div>
+  <div class="Empty_Cart">
+    <div class="imgbox">
+      <img src="../../../assets/emptycart.webp" alt="" />
+    </div>
+    <div class="heading">
+      <h4>Missing Cart Items?</h4>
+    </div>
+    <ng-container>
+      <div class="message">
+        <small>Login to see items you added priviously</small>
+      </div>
+      <div class="btn">
+        <a>Login</a>
+      </div>
+    </ng-container>
+    <ng-container>
+      <div class="message">
+        <small>Go and Get Samething</small>
+      </div>
+      <div class="btn" routerLink="/product">
+        <a>View Product</a>
+      </div>
+    </ng-container>
+   
+  </div>
+</div> -->
